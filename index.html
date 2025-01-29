@@ -1,165 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Umeshchandra Sagar Sugur - Portfolio</title>
-    <style>
-        :root {
-            --primary-color: #007acc;
-            --secondary-color: #1d3557;
-            --background-color: #f8f9fa;
-            --text-color: #333;
-            --light-text-color: #555;
-            --card-bg: #fff;
-            --card-shadow: rgba(0, 0, 0, 0.1);
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-        header h1 {
-            font-size: 2.5rem;
-        }
-        header nav {
-            margin-top: 1rem;
-        }
-        header nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-        header nav a:hover {
-            color: #ffde59;
-        }
-        main {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-        }
-        section {
-            margin-bottom: 2rem;
-        }
-        h2 {
-            color: var(--primary-color);
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--primary-color);
-            display: inline-block;
-        }
-        .card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: 0 4px 6px var(--card-shadow);
-            padding: 20px;
-            margin-bottom: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 12px var(--card-shadow);
-        }
-        .project a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-        .project a:hover {
-            color: #ffde59;
-        }
-        footer {
-            background-color: var(--secondary-color);
-            color: white;
-            text-align: center;
-            padding: 1rem 0;
-            margin-top: 2rem;
-        }
-        footer p {
-            margin: 0;
-        }
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            header nav a {
-                font-size: 1rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name - Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Umeshchandra Sagar Sugur</h1>
-        <nav>
-            <a href="#about">About Me</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
-    <main>
-        <section id="about">
-            <h2>About Me</h2>
-            <div class="card">
-                <p>CEH-certified cybersecurity professional with expertise in tools like Metasploit, Burp Suite, and Wireshark. Currently pursuing a Master's in Cybersecurity at the University of North Texas with a GPA of 4.0. Skilled in network security, incident response, and vulnerability assessment.</p>
-            </div>
-        </section>
-        <section id="projects">
-            <h2>Projects</h2>
-            <div class="card project">
-                <h3>Blockchain Smart Contract Development and Testing</h3>
-                <p>Configured and deployed 5+ smart contracts using Foundry and Ganache, improving deployment efficiency by 30%.</p>
-                <a href="#">View Details</a>
-            </div>
-            <div class="card project">
-                <h3>Simulated Ransomware Attack</h3>
-                <p>Designed a simulation using phishing emails, achieving a 95% detection rate of ransomware threats.</p>
-                <a href="#">View Details</a>
-            </div>
-            <div class="card project">
-                <h3>Secure E-commerce Store</h3>
-                <p>Built an e-commerce site with Multi-Factor Authentication and secure Stripe payment integration, increasing consumer trust by 25%.</p>
-                <a href="#">View Details</a>
-            </div>
-        </section>
-        <section id="skills">
-            <h2>Skills</h2>
-            <div class="card">
-                <ul>
-                    <li><strong>Security Tools:</strong> Metasploit, Burp Suite, Nmap, Wireshark, Gobuster</li>
-                    <li><strong>Programming:</strong> Python, Java, C++, JavaScript, SQL</li>
-                    <li><strong>Cloud & Network Security:</strong> AWS, Azure, IDS/IPS</li>
-                    <li><strong>Game Development:</strong> Unity, Blender</li>
-                </ul>
-            </div>
-        </section>
-        <section id="contact">
-            <h2>Contact</h2>
-            <div class="card">
-                <p>Email: <a href="mailto:aravindsagar4510@gmail.com">aravindsagar4510@gmail.com</a></p>
-                <p>LinkedIn: <a href="https://www.linkedin.com/in/sugur-umeshchandra-sagar" target="_blank">View Profile</a></p>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <p>© 2025 Umeshchandra Sagar Sugur. All rights reserved.</p>
-    </footer>
+  <header>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <h1>Hi, I'm Your Name</h1>
+    <p>A [Your Role] passionate about building things for the web.</p>
+    <a href="#projects" class="btn">View My Work</a>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>I'm a [Your Role] with experience in [Your Skills]. I love solving problems and creating meaningful experiences through code.</p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <h3>Project 1</h3>
+        <p>Description of Project 1.</p>
+        <a href="#" class="btn">View Project</a>
+      </div>
+      <div class="project-card">
+        <h3>Project 2</h3>
+        <p>Description of Project 2.</p>
+        <a href="#" class="btn">View Project</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Let's connect! Reach out to me at <a href="mailto:youremail@example.com">youremail@example.com</a>.</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2023 Your Name. All rights reserved.</p>
+  </footer>
 </body>
 </html>
