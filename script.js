@@ -22,3 +22,13 @@ const observer = new IntersectionObserver(entries => {
 sections.forEach(section => {
   observer.observe(section);
 });
+
+// Lock/Unlock Animation for Sidebar
+function toggleLock() {
+  const lock = document.querySelector('.lock-icon');
+  lock.textContent = lock.textContent === '🔓' ? '🔒' : '🔓';
+  lock.style.filter = 'drop-shadow(0 0 8px #ff0000)';
+  setTimeout(() => {
+    lock.style.filter = 'drop-shadow(0 0 5px #16c784)';
+  }, 500);
+}
