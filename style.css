@@ -27,6 +27,39 @@ header nav a {
 header nav a:hover {
   color: #64ffda;
 }
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.hero-image img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #64ffda;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  background: #112240;
+}
+
+.hero-text {
+  max-width: 500px;
+  text-align: left;
+}
+
+@media (max-width: 800px) {
+  .hero-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .hero-text {
+    text-align: center;
+  }
+}
+
 
 #hero {
   background: #0a192f;
