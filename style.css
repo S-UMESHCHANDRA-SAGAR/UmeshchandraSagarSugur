@@ -2,51 +2,43 @@ body {
   font-family: 'Inter', sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(120deg, #101e34 0%, #1a2a4f 100%);
-  color: #e6e6e6;
+  background: #fff;
+  color: #191919;
   min-height: 100vh;
 }
 
 header {
-  background: rgba(10,25,47,0.95);
-  color: #e6e6e6;
-  padding: 1.5rem 0 1rem 0;
+  background: #191919;
+  color: #fff;
+  padding: 1.2rem 0;
   text-align: center;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
 }
 
 header nav a {
-  color: #ccd6f6;
+  color: #fff;
   margin: 0 1.2rem;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.1rem;
-  transition: color 0.2s;
   letter-spacing: 0.03em;
+  transition: color 0.2s;
+  position: relative;
 }
 
-header nav a:hover {
-  color: #64ffda;
+header nav a:hover,
+header nav a:focus {
+  color: #16c784;
 }
 
 section {
-  padding: 3.5rem 0 2.5rem 0;
+  padding: 3rem 0 2rem 0;
   max-width: 1100px;
   margin: 0 auto;
   text-align: center;
-}
-
-.glass {
-  background: rgba(18,34,64,0.65);
-  border-radius: 18px;
-  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.12);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(100,255,218,0.08);
-  margin-bottom: 2.5rem;
-  padding: 2.5rem 2rem;
 }
 
 #hero {
@@ -64,54 +56,55 @@ section {
   height: 160px;
   object-fit: cover;
   border-radius: 50%;
-  border: 4px solid #64ffda;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.22);
+  border: 4px solid #16c784;
+  box-shadow: 0 2px 16px rgba(22,199,132,0.12);
   margin-bottom: 1.2rem;
-  background: #112240;
+  background: #f4f4f4;
 }
 
 .hero-content h1 {
   font-size: 2.7rem;
   font-weight: 900;
-  color: #ccd6f6;
+  color: #191919;
   margin-bottom: 0.6rem;
   letter-spacing: 0.01em;
 }
 
 .subtitle {
-  color: #64ffda;
+  color: #16c784;
   font-size: 1.15rem;
   font-weight: 700;
   margin-bottom: 0.7rem;
 }
 
 .summary {
-  color: #8892b0;
+  color: #444;
   font-size: 1.1rem;
   margin-bottom: 1.5rem;
 }
 
 .btn {
-  background: linear-gradient(90deg,#64ffda 0%, #52d1b2 100%);
-  color: #0a192f;
+  background: #16c784;
+  color: #fff;
   padding: 0.7rem 1.7rem;
   text-decoration: none;
   border-radius: 8px;
   font-weight: 700;
   font-size: 1.1rem;
-  box-shadow: 0 2px 8px rgba(100,255,218,0.12);
+  box-shadow: 0 2px 8px rgba(22,199,132,0.12);
   transition: background 0.2s, color 0.2s;
   display: inline-block;
+  border: none;
 }
 
 .btn:hover {
-  background: linear-gradient(90deg,#52d1b2 0%, #64ffda 100%);
-  color: #112240;
+  background: #191919;
+  color: #16c784;
 }
 
 h2 {
-  font-size: 2.2rem;
-  color: #ccd6f6;
+  font-size: 2.1rem;
+  color: #191919;
   margin-bottom: 2.2rem;
   font-weight: 900;
   letter-spacing: 0.01em;
@@ -125,18 +118,19 @@ h2 {
 }
 
 .timeline-item {
-  background: rgba(18,34,64,0.8);
+  background: #f4f4f4;
   padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: 10px;
   width: 90%;
   max-width: 600px;
   text-align: left;
-  box-shadow: 0 2px 12px rgba(31,38,135,0.10);
+  box-shadow: 0 2px 12px rgba(22,199,132,0.07);
   margin-bottom: 0.7rem;
+  border-left: 5px solid #16c784;
 }
 
 .timeline-item h3 {
-  color: #64ffda;
+  color: #16c784;
   font-size: 1.3rem;
   margin-bottom: 0.3rem;
 }
@@ -149,27 +143,27 @@ h2 {
 }
 
 .project-card {
-  background: rgba(18,34,64,0.7);
+  background: #f4f4f4;
   padding: 1.7rem 1.2rem;
   border-radius: 14px;
   width: 320px;
   text-align: left;
-  box-shadow: 0 2px 12px rgba(31,38,135,0.10);
+  box-shadow: 0 2px 12px rgba(22,199,132,0.07);
   margin-bottom: 1.2rem;
-  transition: transform 0.2s, box-shadow 0.2s;
-  border: 1px solid rgba(100,255,218,0.07);
+  border: 2px solid #16c78422;
+  transition: border 0.2s, box-shadow 0.2s;
 }
 
 .project-card:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 8px 32px 0 rgba(100,255,218,0.13);
-  border: 1.5px solid #64ffda;
+  border: 2px solid #16c784;
+  box-shadow: 0 8px 32px 0 rgba(22,199,132,0.13);
 }
 
 .project-card h3 {
-  color: #64ffda;
+  color: #191919;
   font-size: 1.15rem;
   margin-bottom: 0.6rem;
+  font-weight: 900;
 }
 
 .skills-grid {
@@ -180,17 +174,18 @@ h2 {
 }
 
 .skill-category {
-  background: rgba(18,34,64,0.7);
+  background: #f4f4f4;
   padding: 1.1rem 1rem;
   border-radius: 10px;
   width: 260px;
   text-align: left;
   margin-bottom: 1rem;
-  box-shadow: 0 2px 8px rgba(31,38,135,0.08);
+  box-shadow: 0 2px 8px rgba(22,199,132,0.07);
+  border-left: 4px solid #16c784;
 }
 
 .skill-category h3 {
-  color: #64ffda;
+  color: #16c784;
   font-size: 1.05rem;
   margin-bottom: 0.4rem;
 }
@@ -203,7 +198,7 @@ h2 {
 }
 
 .social-links a {
-  color: #64ffda;
+  color: #191919;
   font-size: 1.4rem;
   text-decoration: none;
   font-weight: 700;
@@ -212,21 +207,21 @@ h2 {
 }
 
 .social-links a:hover {
-  color: #52d1b2;
+  color: #16c784;
   text-decoration: underline;
 }
 
 footer {
-  background: rgba(10,25,47,0.95);
-  color: #8892b0;
+  background: #191919;
+  color: #fff;
   text-align: center;
   padding: 1.2rem 0;
   margin-top: 2rem;
   font-size: 1rem;
-  border-top: 1px solid rgba(100,255,218,0.07);
+  border-top: 1px solid #16c78422;
 }
 
-#highlights {
+.highlights-row {
   display: flex;
   justify-content: center;
   gap: 2.5rem;
@@ -236,24 +231,24 @@ footer {
 }
 
 .highlight-card {
-  background: rgba(18,34,64,0.85);
+  background: #f4f4f4;
   border-radius: 14px;
-  box-shadow: 0 2px 12px rgba(100,255,218,0.08);
+  box-shadow: 0 2px 12px rgba(22,199,132,0.08);
   padding: 1.4rem 2.2rem;
   text-align: center;
-  border: 1.5px solid rgba(100,255,218,0.07);
+  border: 2px solid #16c78422;
   min-width: 120px;
 }
 
 .highlight-card h3 {
   font-size: 2rem;
-  color: #64ffda;
+  color: #16c784;
   margin: 0 0 0.3rem 0;
   font-weight: 900;
 }
 
 .highlight-card p {
-  color: #ccd6f6;
+  color: #191919;
   font-size: 1.05rem;
   margin: 0;
 }
@@ -270,7 +265,7 @@ footer {
 }
 
 @media (max-width: 900px) {
-  .project-grid, .skills-grid, #highlights {
+  .project-grid, .skills-grid, .highlights-row {
     flex-direction: column;
     align-items: center;
     gap: 1.2rem;
