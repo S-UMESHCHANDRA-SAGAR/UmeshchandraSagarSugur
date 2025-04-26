@@ -227,31 +227,39 @@ h2 {
 .tech-track {
   display: flex;
   width: max-content;
-  animation: tech-scroll 30s linear infinite;
+  animation: tech-scroll 28s linear infinite;
   align-items: center;
   gap: 2.5rem;
 }
 
 .tech-track img {
-  height: 52px;
-  width: 52px;
+  height: 48px;
+  width: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  max-width: 56px;
+  max-height: 56px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 8px rgba(100,255,218,0.09));
-  background: #112240;
-  border-radius: 12px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(22,199,132,0.08);
   padding: 0.5rem;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1.5px solid #e6e6e6;
 }
 
 .tech-track img:hover {
-  transform: scale(1.12) rotate(-4deg);
-  box-shadow: 0 4px 16px #64ffda33;
+  transform: scale(1.12) rotate(-5deg);
+  box-shadow: 0 4px 16px #16c78433;
+  border: 1.5px solid #16c784;
+  background: #f4f4f4;
 }
 
 @keyframes tech-scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
 
 
 footer {
