@@ -76,3 +76,50 @@ document.addEventListener('DOMContentLoaded', function() {
     }, index * 800);
   });
 });
+
+
+const terminalLines = [
+  { text: '~ scan --target photo.jpg --mode deep', class: 'command' },
+  { text: '[▇] Initiating biometric scan...', class: '' },
+  { text: '[▇] Analyzing digital footprint...', class: '' },
+  { text: '[▇] Threat intelligence: No vulnerabilities detected', class: '' },
+  { text: '[✔] Cybersecurity professional identified: Umeshchandra Sagar', class: 'identified' },
+  { text: '[✔] Status: All systems protected ', class: 'status', cursor: true }
+];
+
+function typeTerminalLines(lines, containerId, charDelay = 90, lineDelay = 900) {
+  const container = document.getElementById(containerId);
+  let lineIdx = 0;
+
+  function typeLine() {
+    if (lineIdx >= lines.length) return;
+    const { text, class: cls, cursor } = lines[lineIdx];
+    const lineElem = document.createElement('div');
+    lineElem.className = `terminal-line${cls ? ' ' + cls : ''}`;
+    container.appendChild(lineElem);
+
+    let charIdx = 0;
+    function typeChar() {
+      lineElem.textContent = text.slice(0, charIdx + 1);
+      charIdx++;
+      if (charIdx < text.length) {
+        setTimeout(typeChar, charDelay);
+      } else {
+        if (cursor) {
+          const cur = document.createElement('span');
+          cur.className = 'cursor';
+          cur.textContent = '_';
+          lineElem.appendChild(cur);
+        }
+        lineIdx++;
+        setTimeout(typeLine, lineDelay);
+      }
+    }
+    typeChar();
+  }
+  typeLine();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  typeTerminalLines(terminalLines, 'cyber-terminal', 90, 900);
+});
