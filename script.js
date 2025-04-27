@@ -8,7 +8,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Fade-inanimation on scroll
+// Fade-in animation on scroll
 const sections = document.querySelectorAll('section');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -22,7 +22,7 @@ sections.forEach(section => {
   observer.observe(section);
 });
 
-// Cyber Range Simulation
+// Cyber Range Simulation (keep if you have the cyber-range section)
 function startHackSimulation() {
   const logWindow = document.querySelector('.log-window');
   const statusLed = document.querySelector('.led');
@@ -43,41 +43,7 @@ function startHackSimulation() {
   }, 3000);
 }
 
-// Initialize terminal threat level animation
-document.addEventListener('DOMContentLoaded', () => {
-  const threatLevel = document.querySelector('.threat-level');
-  let level = 0;
-  const interval = setInterval(() => {
-    level = (level + 1) % 101;
-    threatLevel.textContent = `${level}%`;
-    if (level === 100) clearInterval(interval);
-  }, 50);
-});
-
-
-// Add typing effect to terminal
-document.addEventListener('DOMContentLoaded', function() {
-  const responses = document.querySelectorAll('.terminal-content .response');
-  
-  responses.forEach((response, index) => {
-    const originalText = response.textContent;
-    response.textContent = '';
-    
-    setTimeout(() => {
-      let i = 0;
-      const typing = setInterval(() => {
-        if (i < originalText.length) {
-          response.textContent += originalText.charAt(i);
-          i++;
-        } else {
-          clearInterval(typing);
-        }
-      }, 30);
-    }, index * 800);
-  });
-});
-
-
+// Terminal typing animation
 const terminalLines = [
   { text: '~ scan --target photo.jpg --mode deep', class: 'command' },
   { text: '[▇] Initiating biometric scan...', class: '' },
