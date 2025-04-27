@@ -353,3 +353,147 @@ body > footer {
   }
 }
 
+/* Add these new styles at the end */
+.terminal {
+  background: #000;
+  border: 2px solid #16c784;
+  border-radius: 8px;
+  padding: 1rem;
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.terminal-header {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.terminal-header span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.red-dot { background: #ff0000; }
+.yellow-dot { background: #ffff00; }
+.green-dot { background: #16c784; }
+
+.typewriter {
+  color: #16c784;
+  font-family: 'Courier New', monospace;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0;
+  letter-spacing: 0.15em;
+  animation: typing 3.5s steps(40, end);
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+.threat-map {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background: #000;
+  border: 2px solid #16c784;
+  margin: 2rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.threat-node {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #ff0000;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.threat-node:hover {
+  transform: scale(1.5);
+  box-shadow: 0 0 15px #ff0000;
+}
+
+.threat-node:hover::after {
+  content: attr(data-threat);
+  position: absolute;
+  left: 25px;
+  background: #000;
+  color: #ff0000;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+}
+
+.pulse {
+  animation: threat-pulse 1.5s infinite;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(255,0,0,0.4);
+}
+
+@keyframes threat-pulse {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+#cyber-range {
+  background: rgba(0,0,0,0.8);
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.simulation-container {
+  text-align: center;
+}
+
+.firewall-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.led {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.led.green { background: #16c784; }
+.led.red { background: #ff0000; }
+
+.hack-button {
+  background: #16c784;
+  color: #fff;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+}
+
+.hack-button:hover {
+  background: #119c6d;
+}
+
+.log-window {
+  background: #000;
+  color: #16c784;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+  text-align: left;
+  font-family: 'Courier New', monospace;
+  min-height: 120px;
+}
