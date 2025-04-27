@@ -53,3 +53,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (level === 100) clearInterval(interval);
   }, 50);
 });
+
+
+// Add typing effect to terminal
+document.addEventListener('DOMContentLoaded', function() {
+  const responses = document.querySelectorAll('.terminal-content .response');
+  
+  responses.forEach((response, index) => {
+    const originalText = response.textContent;
+    response.textContent = '';
+    
+    setTimeout(() => {
+      let i = 0;
+      const typing = setInterval(() => {
+        if (i < originalText.length) {
+          response.textContent += originalText.charAt(i);
+          i++;
+        } else {
+          clearInterval(typing);
+        }
+      }, 30);
+    }, index * 800);
+  });
+});
