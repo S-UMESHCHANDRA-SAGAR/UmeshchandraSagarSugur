@@ -88,5 +88,5 @@ function typeTerminalLines(lines, containerId, charDelay = 60, lineDelay =600) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  typeTerminalLines(terminalLines, 'cyber-terminal', 90, 900);
+  typeTerminalLines(terminalLines, 'cyber-terminal', 60, 600);
 });
