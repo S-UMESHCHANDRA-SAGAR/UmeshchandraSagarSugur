@@ -43,7 +43,7 @@ function startHackSimulation() {
   }, 3000);
 }
 
-// Sound Effects with Lower Volume
+// Sound Effects
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 const audioCtx = new AudioContext();
 
@@ -52,7 +52,7 @@ function playTypingSound() {
   const gainNode = audioCtx.createGain();
   oscillator.type = 'square';
   oscillator.frequency.setValueAtTime(800, audioCtx.currentTime);
-  gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime); // Lower volume to 20%
+  gainNode.gain.setValueAtTime(0.02, audioCtx.currentTime); // Volume at 2%
   oscillator.connect(gainNode);
   gainNode.connect(audioCtx.destination);
   oscillator.start();
@@ -64,7 +64,7 @@ function playSuccessSound() {
   const gainNode = audioCtx.createGain();
   oscillator.type = 'sine';
   oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime);
-  gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime); // Lower volume to 20%
+  gainNode.gain.setValueAtTime(0.02, audioCtx.currentTime); // Volume at 2%
   oscillator.connect(gainNode);
   gainNode.connect(audioCtx.destination);
   oscillator.start();
@@ -82,26 +82,26 @@ const terminalLines = [
 // Lines for each section
 const experienceLines = [
   { text: '[▇] Scanning Experience...', class: '' },
-  { text: '[▇] Result: 4+ years | 3.5K+ threats analyzed', class: 'achievement' },
-  { text: '[✔] Highlight: Reduced exploit risks by 40%', class: 'identified' },
-  { text: '[?] View another section? [1] Experience [2] Certifications [3] Skills [4] Download Resume', class: 'prompt' }
+  { text: '[▇] Result: 3+ years | 3.5K+ threats analyzed', class: 'achievement' },
+  { text: '[✔] Highlight: Reduced exploit risks by 40%', class: 'identified' }
 ];
 
 const certificationsLines = [
   { text: '[▇] Scanning Certifications...', class: '' },
   { text: '[▇] Result: CEH v13 | CompTIA Security+', class: 'achievement' },
-  { text: '[✔] Highlight: Splunk Core Certified Power User', class: 'identified' },
-  { text: '[?] View another section? [1] Experience [2] Certifications [3] Skills [4] Download Resume', class: 'prompt' }
+  { text: '[✔] Highlight: Splunk Core Certified Power User', class: 'identified' }
 ];
 
 const skillsLines = [
   { text: '[▇] Scanning Skills...', class: '' },
   { text: '[▇] Result: SOC Analysis | PenTesting', class: 'achievement' },
-  { text: '[✔] Highlight: Cloud Security (AWS, Azure)', class: 'identified' },
-  { text: '[?] View another section? [1] Experience [2] Certifications [3] Skills [4] Download Resume', class: 'prompt' }
+  { text: '[✔] Highlight: Cloud Security (AWS, Azure)', class: 'identified' }
 ];
 
-function typeTerminalLines(lines, containerId, charDelay = 15, lineDelay = 150) {
+// Track displayed sections to prevent repetition
+let displayedSections = new Set();
+
+function typeTerminalLines(lines, containerId, charDelay = 15, lineDelay = 150, callback = null) {
   const container = document.getElementById(containerId);
   const cta = document.querySelector('.hero-cta');
   const choices = document.getElementById('terminal-choices');
@@ -135,7 +135,11 @@ function typeTerminalLines(lines, containerId, charDelay = 15, lineDelay = 150) 
 
   function typeLine() {
     if (lineIdx >= lines.length) {
-      choices.style.display = 'flex';
+      if (callback) {
+        callback();
+      } else {
+        choices.style.display = 'flex'; // Always show choices if no callback is provided
+      }
       return;
     }
 
@@ -184,12 +188,23 @@ function typeTerminalLines(lines, containerId, charDelay = 15, lineDelay = 150) 
         playSuccessSound();
         cta.classList.add('visible');
       } else {
-        // Show the selected section's lines
-        const nextLines = choice === 'experience' ? experienceLines :
-                         choice === 'certifications' ? certificationsLines :
-                         skillsLines;
-        totalLines += nextLines.length;
-        typeTerminalLines(nextLines, containerId, charDelay, lineDelay);
+        // Check if the section has already been displayed
+        if (displayedSections.has(choice)) {
+          // If section has already been displayed, skip content and show choices immediately
+          choices.style.display = 'flex';
+        } else {
+          // Mark the section as displayed
+          displayedSections.add(choice);
+          // Show the selected section's lines
+          const nextLines = choice === 'experience' ? experienceLines :
+                           choice === 'certifications' ? certificationsLines :
+                           skillsLines;
+          totalLines += nextLines.length;
+          typeTerminalLines(nextLines, containerId, charDelay, lineDelay, () => {
+            // After displaying the section, immediately show the choices
+            choices.style.display = 'flex';
+          });
+        }
       }
     }, { once: true }); // Ensure the event listener is only triggered once
   });
@@ -225,6 +240,8 @@ const scoreObserver = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 
 document.addEventListener('DOMContentLoaded', function() {
+  // Initialize displayedSections as empty when the page loads
+  displayedSections = new Set();
   typeTerminalLines(terminalLines, 'cyber-terminal', 15, 150);
 
   // Replay button functionality
@@ -236,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const threatIndicator = document.querySelector('.threat-indicator');
     const threatText = document.querySelector('.threat-text');
 
-    // Reset terminal
+    // Reset terminal and displayed sections
     container.innerHTML = '';
     choices.style.display = 'none';
     cta.classList.remove('visible');
@@ -244,6 +261,7 @@ document.addEventListener('DOMContentLoaded', function() {
     threatIndicator.classList.remove('yellow', 'green');
     threatIndicator.classList.add('red');
     threatText.textContent = 'Scan Status: Initializing';
+    displayedSections = new Set(); // Reset displayed sections
 
     // Restart simulation
     typeTerminalLines(terminalLines, 'cyber-terminal', 15, 150);
