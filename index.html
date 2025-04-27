@@ -43,29 +43,40 @@
   <main>
     <!-- HERO SECTION -->
     <section id="hero" class="fade-in">
-  <div class="hero-container">
-    <div class="hero-image">
-      <img src="image.jpg" alt="Umeshchandra Sagar">
-      <div class="scan-line"></div>
-    </div>
-    <div class="terminal-container">
-      <div class="terminal-header">
-        <span class="dot red-dot"></span>
-        <span class="dot yellow-dot"></span>
-        <span class="dot green-dot"></span>
+      <div class="hero-container">
+        <div class="hero-image">
+          <img src="image.jpg" alt="Umeshchandra Sagar">
+          <div class="scan-line"></div>
+        </div>
+        <div class="terminal-container">
+          <div class="terminal-header">
+            <span class="dot red-dot"></span>
+            <span class="dot yellow-dot"></span>
+            <span class="dot green-dot"></span>
+          </div>
+          <div class="terminal-status">
+            <div class="threat-level">
+              <span class="threat-indicator red"></span>
+              <span class="threat-text">Threat Level: Critical</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" id="progress-fill"></div>
+            </div>
+          </div>
+          <div class="terminal-content" id="cyber-terminal">
+            <!-- Lines will be typed here by JS -->
+          </div>
+          <div class="terminal-choices" id="terminal-choices" style="display: none;">
+            <button class="choice-btn" data-choice="defensive">1. Defensive Shield</button>
+            <button class="choice-btn" data-choice="offensive">2. Offensive Strike</button>
+          </div>
+          <div class="hero-cta">
+            <a href="UMESHCHANDRA-SAGAR-SUGUR.pdf" class="btn" target="_blank" role="button" aria-label="Download Umeshchandra Sagar's resume">Download Resume</a>
+            <button class="replay-btn" id="replay-btn">Replay Mission</button>
+          </div>
+        </div>
       </div>
-      <div class="terminal-content" id="cyber-terminal">
-        <!-- Lines will be typed here by JS -->
-      </div>
-      <div class="hero-cta">
-        <a href="UMESHCHANDRA-SAGAR-SUGUR.pdf" class="btn" target="_blank">Download Resume</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
+    </section>
 
     <section id="about" class="fade-in">
       <h2>About Me</h2>
@@ -299,7 +310,6 @@
       </div>
     </section>
 
-
     <section id="cyber-range" class="fade-in">
       <h2>Live Cyber Range</h2>
       <div class="simulation-container">
@@ -315,16 +325,10 @@
         </div>
       </div>
     </section>
-
-
-
-    
   </main>
 
-  
-
   <footer>
-    &copy; 2025 Umeshchandra Sagar. All rights reserved.
+    © 2025 Umeshchandra Sagar. All rights reserved.
   </footer>
   <script src="script.js"></script>
 </body>
