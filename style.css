@@ -634,7 +634,7 @@ body > footer {
     flex-direction: column;
     gap: 32px;
     text-align: center;
-  }S
+  }
   .terminal-container {
     min-width: 0;
     max-width: 98vw;
@@ -646,4 +646,3 @@ body > footer {
     padding: 28px 10px 16px 10px;
   }
 }
-S
