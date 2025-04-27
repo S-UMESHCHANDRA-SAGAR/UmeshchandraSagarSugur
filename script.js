@@ -53,7 +53,7 @@ const terminalLines = [
   { text: '[✔] Status: All systems protected ', class: 'status', cursor: true }
 ];
 
-function typeTerminalLines(lines, containerId, charDelay = 90, lineDelay =900) {
+function typeTerminalLines(lines, containerId, charDelay = 40, lineDelay =400) {
   const container = document.getElementById(containerId);
   let lineIdx = 0;
 
@@ -87,5 +87,5 @@ function typeTerminalLines(lines, containerId, charDelay = 90, lineDelay =900) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  typeTerminalLines(terminalLines, 'cyber-terminal', 90, 900);
+  typeTerminalLines(terminalLines, 'cyber-terminal', 40, 400);
 });
