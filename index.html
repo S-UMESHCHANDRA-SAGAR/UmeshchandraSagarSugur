@@ -57,7 +57,7 @@
           <div class="terminal-status">
             <div class="threat-level">
               <span class="threat-indicator red"></span>
-              <span class="threat-text">Threat Level: Critical</span>
+              <span class="threat-text">Scan Status: Initializing</span>
             </div>
             <div class="progress-bar">
               <div class="progress-fill" id="progress-fill"></div>
@@ -67,12 +67,14 @@
             <!-- Lines will be typed here by JS -->
           </div>
           <div class="terminal-choices" id="terminal-choices" style="display: none;">
-            <button class="choice-btn" data-choice="defensive">1. Defensive Shield</button>
-            <button class="choice-btn" data-choice="offensive">2. Offensive Strike</button>
+            <button class="choice-btn" data-choice="experience">1. Experience</button>
+            <button class="choice-btn" data-choice="certifications">2. Certifications</button>
+            <button class="choice-btn" data-choice="skills">3. Skills</button>
+            <button class="choice-btn" data-choice="resume">4. Download Resume</button>
           </div>
           <div class="hero-cta">
             <a href="UMESHCHANDRA-SAGAR-SUGUR.pdf" class="btn" target="_blank" role="button" aria-label="Download Umeshchandra Sagar's resume">Download Resume</a>
-            <button class="replay-btn" id="replay-btn">Replay Mission</button>
+            <button class="replay-btn" id="replay-btn">Replay Scan</button>
           </div>
         </div>
       </div>
@@ -113,6 +115,47 @@
       <div class="highlight-card">
         <h3>3.5K+</h3>
         <p>Security Alerts Analyzed</p>
+      </div>
+    </section>
+
+    <section id="scorecard" class="fade-in">
+      <h2>Cybersecurity Scorecard</h2>
+      <div class="scorecard-container">
+        <div class="score-display">
+          <h3>Total Score: <span id="total-score">0</span>/100</h3>
+          <div class="score-bar">
+            <div class="score-fill" id="score-fill"></div>
+          </div>
+        </div>
+        <div class="score-breakdown">
+          <div class="score-category" data-category="experience">
+            <p>Experience: <span>40/100</span></p>
+            <div class="category-bar">
+              <div class="category-fill" style="width: 40%;"></div>
+            </div>
+            <div class="category-details">
+              <p>4+ years, 3.5K+ threats analyzed, 40% risk reduction</p>
+            </div>
+          </div>
+          <div class="score-category" data-category="certifications">
+            <p>Certifications: <span>30/100</span></p>
+            <div class="category-bar">
+              <div class="category-fill" style="width: 30%;"></div>
+            </div>
+            <div class="category-details">
+              <p>CEH v13, CompTIA Security+, Splunk Power User, AWS Cloud Practitioner</p>
+            </div>
+          </div>
+          <div class="score-category" data-category="skills">
+            <p>Skills: <span>30/100</span></p>
+            <div class="category-bar">
+              <div class="category-fill" style="width: 30%;"></div>
+            </div>
+            <div class="category-details">
+              <p>SOC Analysis, PenTesting, Cloud Security, Blockchain Security</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
