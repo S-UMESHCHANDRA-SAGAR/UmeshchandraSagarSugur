@@ -49,12 +49,11 @@ const terminalLines = [
   { text: '[▇] Initiating biometric scan...', class: '' },
   { text: '[▇] Analyzing digital footprint...', class: '' },
   { text: '[▇] Threat intelligence: No vulnerabilities detected', class: '' },
-  { text: '[✔] Cybersecurity professional identified, class: 'identified' },
-  { text: '[✔] Name: Umeshchandra Sagar', class: 'identified' },
+  { text: '[✔] Cybersecurity professional identified: Umeshchandra Sagar Sugur, class: 'identified' },
   { text: '[✔] Status: All systems protected ', class: 'status', cursor: true }
 ];
 
-function typeTerminalLines(lines, containerId, charDelay = 60, lineDelay =600) {
+function typeTerminalLines(lines, containerId, charDelay = 90, lineDelay =900) {
   const container = document.getElementById(containerId);
   let lineIdx = 0;
 
@@ -88,5 +87,5 @@ function typeTerminalLines(lines, containerId, charDelay = 60, lineDelay =600) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  typeTerminalLines(terminalLines, 'cyber-terminal', 60, 600);
+  typeTerminalLines(terminalLines, 'cyber-terminal', 90, 900);
 });
