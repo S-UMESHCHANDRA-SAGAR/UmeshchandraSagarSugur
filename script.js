@@ -53,12 +53,17 @@ const terminalLines = [
   { text: '[✔] Status: All systems protected ', class: 'status', cursor: true }
 ];
 
-function typeTerminalLines(lines, containerId, charDelay = 40, lineDelay =400) {
+function typeTerminalLines(lines, containerId, charDelay = 20, lineDelay = 200) {
   const container = document.getElementById(containerId);
+  const cta = document.querySelector('.hero-cta'); // Select the button container
   let lineIdx = 0;
 
   function typeLine() {
-    if (lineIdx >= lines.length) return;
+    if (lineIdx >= lines.length) {
+      // Show the button after the last line is fully typed
+      cta.classList.add('visible');
+      return;
+    }
     const { text, class: cls, cursor } = lines[lineIdx];
     const lineElem = document.createElement('div');
     lineElem.className = `terminal-line${cls ? ' ' + cls : ''}`;
@@ -86,6 +91,7 @@ function typeTerminalLines(lines, containerId, charDelay = 40, lineDelay =400) {
   typeLine();
 }
 
+
 document.addEventListener('DOMContentLoaded', function() {
-  typeTerminalLines(terminalLines, 'cyber-terminal', 40, 400);
+  typeTerminalLines(terminalLines, 'cyber-terminal', 20, 200);
 });
