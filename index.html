@@ -43,13 +43,19 @@
   </header>
 
   <main>
-    <section id="hero" class="fade-in">
-      <img src="image.jpg" alt="Umeshchandra Sagar" class="hero-img">
-      <div class="hero-content">
-        <h1>Umeshchandra Sagar</h1>
-        <p class="subtitle">Cybersecurity Professional | CEH | Security Ops | Game Developer</p>
-        <p class="summary">Passionate about securing systems & networks. Expert in threat detection, incident response, vulnerability management, and security operations.</p>
-        <a class="btn" href="UMESHCHANDRA-SAGAR-SUGUR.pdf" target="_blank">Download Resume</a>
+    <section id="hero" class="terminal fade-in">
+      <div class="terminal-header">
+        <span class="red-dot"></span>
+        <span class="yellow-dot"></span>
+        <span class="green-dot"></span>
+      </div>
+      <div class="terminal-body">
+        <p class="typewriter">> Initializing security protocols...</p>
+        <p class="typewriter">> Welcome, Umeshchandra_Sagar</p>
+        <p class="typewriter">> Current Threat Level: <span class="threat-level">0%</span></p>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
       </div>
     </section>
 
@@ -59,6 +65,18 @@
         I am a cybersecurity professional with hands-on experience in SIEM, penetration testing, and system defense. Currently pursuing a Master's in Cybersecurity at the University of North Texas (GPA: 4.0). My background includes cloud security, blockchain security, and compliance auditing, with a proven ability to collaborate across teams to implement effective cybersecurity solutions.
       </p>
     </section>
+
+    <div class="threat-map fade-in">
+      <div class="threat-node" style="left:15%;top:20%" data-threat="Phishing Attempt">
+        <div class="pulse"></div>
+      </div>
+      <div class="threat-node" style="left:70%;top:60%" data-threat="Malware Attack">
+        <div class="pulse"></div>
+      </div>
+      <div class="threat-node" style="left:40%;top:80%" data-threat="DDoS">
+        <div class="pulse"></div>
+      </div>
+    </div>
 
     <section id="highlights" class="fade-in highlights-row">
       <div class="highlight-card">
@@ -272,7 +290,30 @@
         </a>
       </div>
     </section>
+
+
+    <section id="cyber-range" class="fade-in">
+      <h2>Live Cyber Range</h2>
+      <div class="simulation-container">
+        <div class="firewall-status">
+          <span class="led green"></span>
+          <span>Firewall Active</span>
+        </div>
+        <button class="hack-button" onclick="startHackSimulation()">
+          Initiate PenTest Simulation
+        </button>
+        <div class="log-window">
+          <p>> System Secure</p>
+        </div>
+      </div>
+    </section>
+
+
+
+    
   </main>
+
+  
 
   <footer>
     &copy; 2025 Umeshchandra Sagar. All rights reserved.
