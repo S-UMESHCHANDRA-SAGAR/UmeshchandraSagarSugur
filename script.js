@@ -10,7 +10,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Fade-in animation on scroll
 const sections = document.querySelectorAll('section');
-
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -23,12 +22,34 @@ sections.forEach(section => {
   observer.observe(section);
 });
 
-// Lock/Unlock Animation for Sidebar
-function toggleLock() {
-  const lock = document.querySelector('.lock-icon');
-  lock.textContent = lock.textContent === '🔓' ? '🔒' : '🔓';
-  lock.style.filter = 'drop-shadow(0 0 8px #ff0000)';
+// Cyber Range Simulation
+function startHackSimulation() {
+  const logWindow = document.querySelector('.log-window');
+  const statusLed = document.querySelector('.led');
+  
+  logWindow.innerHTML = `
+    <p>> Initializing penetration test...</p>
+    <p>> Scanning for vulnerabilities...</p>
+    <p>> Detected 3 critical vulnerabilities!</p>
+    <p>> Applying security patches...</p>
+    <p>> System hardened successfully!</p>
+  `;
+  
+  statusLed.classList.remove('green');
+  statusLed.classList.add('red');
   setTimeout(() => {
-    lock.style.filter = 'drop-shadow(0 0 5px #16c784)';
-  }, 500);
+    statusLed.classList.remove('red');
+    statusLed.classList.add('green');
+  }, 3000);
 }
+
+// Initialize terminal threat level animation
+document.addEventListener('DOMContentLoaded', () => {
+  const threatLevel = document.querySelector('.threat-level');
+  let level = 0;
+  const interval = setInterval(() => {
+    level = (level + 1) % 101;
+    threatLevel.textContent = `${level}%`;
+    if (level === 100) clearInterval(interval);
+  }, 50);
+});
