@@ -614,3 +614,23 @@ body > footer {
     text-align: center;
   }
 }
+
+
+.terminal-content .highlight {
+  color: #16c784;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+.terminal-content .response {
+  color: #16c784;
+  font-family: 'JetBrains Mono', monospace;
+  margin-left: 15px;
+  margin-bottom: 8px;
+}
+
+.terminal-content .command {
+  color: #fff;
+  font-weight: 700;
+}
+
