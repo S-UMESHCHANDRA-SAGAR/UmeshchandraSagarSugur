@@ -9,7 +9,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Fade-in animation on scroll
-const sections = document.querySelectorAll('section');
+const sections = document.querySelectorAll('.fade-in');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -100,10 +100,11 @@ const skillsLines = [
 
 // Track displayed sections to prevent repetition
 let displayedSections = new Set();
+// Track if the resume message has been shown
+let isResumeMessageShown = false;
 
 function typeTerminalLines(lines, containerId, charDelay = 15, lineDelay = 150, callback = null) {
   const container = document.getElementById(containerId);
-  const cta = document.querySelector('.hero-cta');
   const choices = document.getElementById('terminal-choices');
   const progressFill = document.getElementById('progress-fill');
   const threatIndicator = document.querySelector('.threat-indicator');
@@ -117,7 +118,6 @@ function typeTerminalLines(lines, containerId, charDelay = 15, lineDelay = 150, 
   }
 
   function updateStatusIndicator() {
-    // Repurpose the threat indicator as a "Scan Status" indicator
     if (lineIdx <= 2) {
       threatIndicator.classList.remove('yellow', 'green');
       threatIndicator.classList.add('red');
@@ -138,7 +138,7 @@ function typeTerminalLines(lines, containerId, charDelay = 15, lineDelay = 150, 
       if (callback) {
         callback();
       } else {
-        choices.style.display = 'flex'; // Always show choices if no callback is provided
+        choices.style.display = 'flex'; // Show choices if no callback is provided
       }
       return;
     }
@@ -171,78 +171,66 @@ function typeTerminalLines(lines, containerId, charDelay = 15, lineDelay = 150, 
     typeChar();
   }
 
-  // Handle user choice
+  typeLine();
+}
+
+// Set up terminal choices event listeners only once
+function setupTerminalChoices() {
+  const choices = document.getElementById('terminal-choices');
+  const container = document.getElementById('cyber-terminal');
+  const cta = document.querySelector('.hero-cta');
+
   choices.querySelectorAll('.choice-btn').forEach(button => {
     button.addEventListener('click', function() {
       const choice = this.getAttribute('data-choice');
       choices.style.display = 'none'; // Hide buttons after choice
 
       if (choice === 'resume') {
-        // Show the resume button and prompt to view the Scorecard
-        const finalLines = [
-          { text: '[✔] Profile scan complete', class: 'identified' },
-          { text: '[✔] Check Cybersecurity Scorecard for summary', class: 'status', cursor: true }
-        ];
-        totalLines += finalLines.length;
-        typeTerminalLines(finalLines, containerId, charDelay, lineDelay);
-        playSuccessSound();
-        cta.classList.add('visible');
+        // Only show the resume message if it hasn't been shown yet
+        if (!isResumeMessageShown) {
+          // Clear the terminal content to avoid stacking
+          container.innerHTML = '';
+          const finalLines = [
+            { text: '[✔] Profile scan complete', class: 'identified' },
+            { text: '[✔] Resume available for download', class: 'status', cursor: true }
+          ];
+          typeTerminalLines(finalLines, 'cyber-terminal', 15, 150);
+          playSuccessSound();
+          cta.classList.add('visible');
+          isResumeMessageShown = true; // Mark the message as shown
+        } else {
+          // If the message was already shown, just show the CTA again
+          cta.classList.add('visible');
+        }
       } else {
         // Check if the section has already been displayed
         if (displayedSections.has(choice)) {
-          // If section has already been displayed, skip content and show choices immediately
           choices.style.display = 'flex';
         } else {
-          // Mark the section as displayed
           displayedSections.add(choice);
-          // Show the selected section's lines
           const nextLines = choice === 'experience' ? experienceLines :
                            choice === 'certifications' ? certificationsLines :
                            skillsLines;
-          totalLines += nextLines.length;
-          typeTerminalLines(nextLines, containerId, charDelay, lineDelay, () => {
-            // After displaying the section, immediately show the choices
+          typeTerminalLines(nextLines, 'cyber-terminal', 15, 150, () => {
             choices.style.display = 'flex';
           });
         }
       }
-    }, { once: true }); // Ensure the event listener is only triggered once
+    });
   });
-
-  typeLine();
 }
 
-// Scorecard Animation
-const scoreObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const scoreFill = document.getElementById('score-fill');
-      const totalScore = document.getElementById('total-score');
-      let score = 0;
-      const targetScore = 100; // Total score (40 + 30 + 30)
-      const increment = targetScore / 100;
-
-      const animateScore = () => {
-        if (score < targetScore) {
-          score += increment;
-          totalScore.textContent = Math.round(score);
-          scoreFill.style.width = `${score}%`;
-          setTimeout(animateScore, 20);
-        } else {
-          totalScore.textContent = targetScore;
-          scoreFill.style.width = `${targetScore}%`;
-        }
-      };
-      animateScore();
-      scoreObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.5 });
-
+// Initialize terminal animation and replay functionality
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize displayedSections as empty when the page loads
+  // Initialize displayedSections and resume message state
   displayedSections = new Set();
+  isResumeMessageShown = false;
+
+  // Start the initial terminal animation
   typeTerminalLines(terminalLines, 'cyber-terminal', 15, 150);
+
+  // Set up terminal choices event listeners
+  setupTerminalChoices();
 
   // Replay button functionality
   document.getElementById('replay-btn').addEventListener('click', function() {
@@ -266,8 +254,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // Restart simulation
     typeTerminalLines(terminalLines, 'cyber-terminal', 15, 150);
   });
-
-  // Observe the Scorecard section
-  const scorecardSection = document.getElementById('scorecard');
-  scoreObserver.observe(scorecardSection);
 });
