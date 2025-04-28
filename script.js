@@ -8,39 +8,71 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Fade-in animation on scroll
+// Fade-in animation on scroll with staggered effect for skills
 const sections = document.querySelectorAll('.fade-in');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
+      // Staggered animation for skills
+      if (entry.target.id === 'skills') {
+        const skillCategories = entry.target.querySelectorAll('.skill-category');
+        skillCategories.forEach((category, index) => {
+          setTimeout(() => {
+            category.style.opacity = '1';
+            category.style.transform = 'translateY(0)';
+          }, index * 150);
+        });
+      }
     }
   });
 }, { threshold: 0.1 });
 
+// Fallback to make sections visible if observer fails
 sections.forEach(section => {
   observer.observe(section);
+  // Ensure section is visible after a timeout if not already
+  setTimeout(() => {
+    if (!section.classList.contains('visible')) {
+      section.classList.add('visible');
+    }
+  }, 1000);
 });
 
-// Cyber Range Simulation (keep for the cyber-range section)
+// Cyber Range Simulation
 function startHackSimulation() {
   const logWindow = document.querySelector('.log-window');
   const statusLed = document.querySelector('.led');
+  const firewallStatus = document.querySelector('.firewall-status span:last-child');
   
-  logWindow.innerHTML = `
-    <p>> Initializing penetration test...</p>
-    <p>> Scanning for vulnerabilities...</p>
-    <p>> Detected 3 critical vulnerabilities!</p>
-    <p>> Applying security patches...</p>
-    <p>> System hardened successfully!</p>
-  `;
-  
+  logWindow.innerHTML = '';
+  firewallStatus.textContent = 'Firewall Under Attack';
   statusLed.classList.remove('green');
   statusLed.classList.add('red');
-  setTimeout(() => {
-    statusLed.classList.remove('red');
-    statusLed.classList.add('green');
-  }, 3000);
+
+  const logs = [
+    '> Detecting intrusion attempt...',
+    '> Source IP: 192.168.1.100',
+    '> Port scan detected on port 80',
+    '> Blocking malicious traffic...',
+    '> Running packet analysis...',
+    '> Threat neutralized.',
+    '> System Secure'
+  ];
+
+  let i = 0;
+  const interval = setInterval(() => {
+    if (i < logs.length) {
+      logWindow.innerHTML += `<p>${logs[i]}</p>`;
+      logWindow.scrollTop = logWindow.scrollHeight;
+      i++;
+    } else {
+      clearInterval(interval);
+      firewallStatus.textContent = 'Firewall Active';
+      statusLed.classList.remove('red');
+      statusLed.classList.add('green');
+    }
+  }, 1000);
 }
 
 // Sound Effects
@@ -52,7 +84,7 @@ function playTypingSound() {
   const gainNode = audioCtx.createGain();
   oscillator.type = 'square';
   oscillator.frequency.setValueAtTime(800, audioCtx.currentTime);
-  gainNode.gain.setValueAtTime(0.02, audioCtx.currentTime); // Volume at 2%
+  gainNode.gain.setValueAtTime(0.02, audioCtx.currentTime);
   oscillator.connect(gainNode);
   gainNode.connect(audioCtx.destination);
   oscillator.start();
@@ -64,7 +96,7 @@ function playSuccessSound() {
   const gainNode = audioCtx.createGain();
   oscillator.type = 'sine';
   oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime);
-  gainNode.gain.setValueAtTime(0.02, audioCtx.currentTime); // Volume at 2%
+  gainNode.gain.setValueAtTime(0.02, audioCtx.currentTime);
   oscillator.connect(gainNode);
   gainNode.connect(audioCtx.destination);
   oscillator.start();
@@ -79,7 +111,6 @@ const terminalLines = [
   { text: '[?] Select section: [1] Experience [2] Certifications [3] Skills', class: 'prompt' },
 ];
 
-// Lines for each section
 const experienceLines = [
   { text: '[▇] Scanning Experience...', class: '' },
   { text: '[▇] Result: 3+ years | 3.5K+ threats analyzed', class: 'achievement' },
@@ -98,9 +129,7 @@ const skillsLines = [
   { text: '[✔] Highlight: Cloud Security (AWS, Azure)', class: 'identified' }
 ];
 
-// Track displayed sections to prevent repetition
 let displayedSections = new Set();
-// Track if the resume message has been shown
 let isResumeMessageShown = false;
 
 function typeTerminalLines(lines, containerId, charDelay = 15, lineDelay = 150, callback = null) {
@@ -138,7 +167,7 @@ function typeTerminalLines(lines, containerId, charDelay = 15, lineDelay = 150, 
       if (callback) {
         callback();
       } else {
-        choices.style.display = 'flex'; // Show choices if no callback is provided
+        choices.style.display = 'flex';
       }
       return;
     }
@@ -174,7 +203,6 @@ function typeTerminalLines(lines, containerId, charDelay = 15, lineDelay = 150, 
   typeLine();
 }
 
-// Set up terminal choices event listeners only once
 function setupTerminalChoices() {
   const choices = document.getElementById('terminal-choices');
   const container = document.getElementById('cyber-terminal');
@@ -183,12 +211,10 @@ function setupTerminalChoices() {
   choices.querySelectorAll('.choice-btn').forEach(button => {
     button.addEventListener('click', function() {
       const choice = this.getAttribute('data-choice');
-      choices.style.display = 'none'; // Hide buttons after choice
+      choices.style.display = 'none';
 
       if (choice === 'resume') {
-        // Only show the resume message if it hasn't been shown yet
         if (!isResumeMessageShown) {
-          // Clear the terminal content to avoid stacking
           container.innerHTML = '';
           const finalLines = [
             { text: '[✔] Profile scan complete', class: 'identified' },
@@ -197,13 +223,11 @@ function setupTerminalChoices() {
           typeTerminalLines(finalLines, 'cyber-terminal', 15, 150);
           playSuccessSound();
           cta.classList.add('visible');
-          isResumeMessageShown = true; // Mark the message as shown
+          isResumeMessageShown = true;
         } else {
-          // If the message was already shown, just show the CTA again
           cta.classList.add('visible');
         }
       } else {
-        // Check if the section has already been displayed
         if (displayedSections.has(choice)) {
           choices.style.display = 'flex';
         } else {
@@ -220,38 +244,67 @@ function setupTerminalChoices() {
   });
 }
 
-// Initialize terminal animation and replay functionality
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize displayedSections and resume message state
-  displayedSections = new Set();
-  isResumeMessageShown = false;
+// Project Modal Functions
+function openProjectModal(projectId) {
+  const modal = document.getElementById(projectId);
+  modal.style.display = 'flex';
+}
 
-  // Start the initial terminal animation
-  typeTerminalLines(terminalLines, 'cyber-terminal', 15, 150);
+function closeProjectModal(projectId) {
+  const modal = document.getElementById(projectId);
+  modal.style.display = 'none';
+}
 
-  // Set up terminal choices event listeners
-  setupTerminalChoices();
+// Experience Modal Functions
+function openExperienceModal(experienceId) {
+  const modal = document.getElementById(experienceId);
+  modal.style.display = 'flex';
+}
 
-  // Replay button functionality
-  document.getElementById('replay-btn').addEventListener('click', function() {
+function closeExperienceModal(experienceId) {
+  const modal = document.getElementById(experienceId);
+  modal.style.display = 'none';
+}
+
+// Close modals when clicking outside
+window.addEventListener('click', function(event) {
+  const projectModals = document.querySelectorAll('.project-modal');
+  const experienceModals = document.querySelectorAll('.experience-modal');
+  projectModals.forEach(modal => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+  experienceModals.forEach(modal => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+});
+
+// Replay Terminal Animation
+function setupReplayButton() {
+  const replayBtn = document.getElementById('replay-btn');
+  replayBtn.addEventListener('click', () => {
     const container = document.getElementById('cyber-terminal');
     const choices = document.getElementById('terminal-choices');
     const cta = document.querySelector('.hero-cta');
-    const progressFill = document.getElementById('progress-fill');
-    const threatIndicator = document.querySelector('.threat-indicator');
-    const threatText = document.querySelector('.threat-text');
-
-    // Reset terminal and displayed sections
     container.innerHTML = '';
     choices.style.display = 'none';
     cta.classList.remove('visible');
-    progressFill.style.width = '0%';
-    threatIndicator.classList.remove('yellow', 'green');
-    threatIndicator.classList.add('red');
-    threatText.textContent = 'Scan Status: Initializing';
-    displayedSections = new Set(); // Reset displayed sections
-
-    // Restart simulation
+    displayedSections = new Set();
+    isResumeMessageShown = false;
     typeTerminalLines(terminalLines, 'cyber-terminal', 15, 150);
   });
+}
+
+// Initialize everything
+document.addEventListener('DOMContentLoaded', function() {
+  displayedSections = new Set();
+  isResumeMessageShown = false;
+
+  // Initialize terminal animation
+  typeTerminalLines(terminalLines, 'cyber-terminal', 15, 150);
+  setupTerminalChoices();
+  setupReplayButton();
 });
