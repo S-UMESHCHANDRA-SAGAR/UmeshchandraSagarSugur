@@ -119,8 +119,8 @@ const experienceLines = [
 
 const certificationsLines = [
   { text: '[▇] Scanning Certifications...', class: '' },
-  { text: '[▇] Result: CEH v13 | CompTIA Security+', class: 'achievement' },
-  { text: '[✔] Highlight: Splunk Core Certified Power User', class: 'identified' }
+  { text: '[▇] Result: CEH | CompTIA Security+ | AWS Cloud Practitioner', class: 'achievement' },
+  { text: '[✔] Highlight: Advanced Penetration Testing | Cybersecurity Job Simulation', class: 'identified' }
 ];
 
 const skillsLines = [
@@ -266,16 +266,33 @@ function closeExperienceModal(experienceId) {
   modal.style.display = 'none';
 }
 
+// Certification Modal Functions
+function openCertificationModal(certId) {
+  const modal = document.getElementById(certId);
+  modal.style.display = 'flex';
+}
+
+function closeCertificationModal(certId) {
+  const modal = document.getElementById(certId);
+  modal.style.display = 'none';
+}
+
 // Close modals when clicking outside
 window.addEventListener('click', function(event) {
   const projectModals = document.querySelectorAll('.project-modal');
   const experienceModals = document.querySelectorAll('.experience-modal');
+  const certificationModals = document.querySelectorAll('.certification-modal');
   projectModals.forEach(modal => {
     if (event.target === modal) {
       modal.style.display = 'none';
     }
   });
   experienceModals.forEach(modal => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+  certificationModals.forEach(modal => {
     if (event.target === modal) {
       modal.style.display = 'none';
     }
