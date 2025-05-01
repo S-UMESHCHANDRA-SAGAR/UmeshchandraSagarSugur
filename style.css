@@ -375,6 +375,38 @@ h2 {
   to { width: 100%; }
 }
 
+.badges-row {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.badge-card {
+  background: #191919;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(22,199,132,0.3);
+  padding: 1rem;
+  border: 2px solid #16c78422;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+}
+
+.badge-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.badge-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(22,199,132,0.5);
+}
 
 .highlights-row {
   display: flex;
@@ -906,38 +938,7 @@ footer {
   border-radius: 8px;
   background: #fff;
   border: 2px solid #16c78444;
-  box-shadow: 0 0 10px #16c78433, 0 0 3px #16c78455;
-  transition: transform 0.18s, box-shadow 0.18s;
-  filter: drop-shadow(0 0 5px #16c78444);
-}
-
-.tech-icon-container:hover img {
-  transform: scale(1.18) rotate(-8deg);
-  box-shadow: 0 0 22px #16c78499;
-  border: 2px solid #16c784;
-}
-
-.tech-tooltip {
-  visibility: hidden;
-  position: absolute;
-  left: 60px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: #191919;
-  color: #16c784;
-  padding: 5px 10px;
-  border-radius: 4px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.9rem;
-  white-space: nowrap;
-  z-index: 2100;
-  opacity: 0;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.tech-icon-container:hover .tech-tooltip {
-  visibility: visible;
-  opacity: 1;
+  box-shadow: 0 0 10px rgba(22,199,132,0.3);
 }
 
 @keyframes tech-vertical-scroll {
@@ -945,37 +946,24 @@ footer {
   100% { transform: translateY(-50%); }
 }
 
-body > header,
-body > main,
-body > footer {
-  margin-left: 84px;
+.tech-tooltip {
+  visibility: hidden;
+  width: 120px;
+  background-color: #191919;
+  color: #16c784;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 100%;
+  margin-left: 10px;
+  transform: translateY(-50%);
+  font-size: 0.85rem;
+  box-shadow: 0 0 10px rgba(22,199,132,0.3);
 }
 
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(.77,0,.18,1), transform 0.0s cubic-bezier(.77,0,.18,1);
+.tech-icon-container:hover .tech-tooltip {
+  visibility: visible;
 }
-
-.fade-in.visible {
-  opacity: 1;
-  transform: none;
-}
-
-.fade-in {
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-@media (max-width: 900px) {
-  .project-grid, .skills-grid, .highlights-row {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.2rem;
-  }
-  .project-card, .skill-category, .highlight-card {
-    width: 95%;
-    min-width: unset;
-  }
-  #hero {
-    min-height
